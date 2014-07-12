@@ -1,7 +1,7 @@
 kangaroo
 ========
 
-C++ Chess Engine
+Bitboard based C++ Chess Engine
 
 <h2>To Do:</h2>
 
