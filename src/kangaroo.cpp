@@ -12,12 +12,12 @@
 using namespace std;
 
 int main() {
-	// TestClass t;
-	extern string testBoard;
-	S_BOARD b = createBitboards(testBoard);
-	Position pos(b, WHITE);
-	S_MOVE move = search(pos, 1);
-	cout << move.fromSquare << " " << move.toSquare << endl;
+	TestClass t;
+	// extern string testBoard;
+	// S_BOARD b = createBitboards(testBoard);
+	// Position pos(b, BLACK);
+	// S_MOVE move = search(pos, 1);
+	// cout << move.fromSquare << " " << move.toSquare << endl;
     return 0;
 }
 

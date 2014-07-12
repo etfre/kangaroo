@@ -11,9 +11,12 @@ using namespace std;
 
 double negamax(Position &pos, int depth, int colorInt) {
 	int bestScore = 10000;
-	printBoard(pos.board);
-	cout << pos.color << endl;
-	cout << pos.isCheck() << endl;
+	if (pos.isStalemate()) {
+		return true;
+	}
+	if (pos.isCheck()) {
+
+	}
 	//check?
 		//stalemate?
 		//checkmate?
@@ -63,6 +66,9 @@ S_MOVE search(Position &pos, int depth) {
 		// cout << "Current move: " << movesCopy[i].evaluation << endl << endl;	
 		pos.undoMove();
 	}
-	if (!bestMoveSet) cout << "Position is already checkmate!!" << endl;
+	if (!bestMoveSet) {
+		if (pos.isCheck()) cout << "Position is already checkmate!!" << endl;
+		else cout << "Position is already stalemate!!" << endl;
+	}
 	return bestMove;
 }

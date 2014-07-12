@@ -24,6 +24,7 @@ public:
 	void generatePossibleMoves();
 	bool isCheck();
 	bool isCheckmate();
+	bool isStalemate();
 	bool legalPosition();
 	void handleCastling();
     void undoCastling();

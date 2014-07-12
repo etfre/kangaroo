@@ -81,6 +81,10 @@ bool Position::isCheckmate() {
 	return true;
 }
 
+bool Position::isStalemate() {
+	if (isCheck()) return false;
+	return false;
+}
 
 bool Position::legalPosition() {
 	/*
