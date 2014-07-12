@@ -10,19 +10,19 @@
 using namespace std;
 
 double negamax(Position &pos, int depth, int colorInt) {
-	printBoard(pos.board);
-	int bestScore = -9999;
+	int bestScore = 10000;
 	if (depth == 0) {
-		return colorInt * evaluate(pos);
+		return evaluate(pos);
 	}
 	pos.generatePossibleMoves();
 	vector<S_MOVE> movesCopy = pos.possibleMoves;
 	for (int i = 0; i < movesCopy.size(); i++) {
 		pos.makeMove(movesCopy[i]);
-		// if (pos.legalPosition()) {
-			int score = -negamax(pos, depth-1, -colorInt);
-			if (score > bestScore) bestScore = score;
-		// }
+		if (pos.legalPosition()) {
+			double score = negamax(pos, depth-1, -colorInt);
+			if (bestScore == 10000 || pos.color == WHITE && score < bestScore ||
+				pos.color == BLACK && score > bestScore) bestScore = score;
+		}
 		pos.undoMove();
 	}
 	return bestScore;
@@ -30,9 +30,8 @@ double negamax(Position &pos, int depth, int colorInt) {
 
 S_MOVE search(Position &pos, int depth) {
 	assert(depth >= 1);
-	int colorInt;
-	if (pos.color == WHITE) colorInt = BCOLOR;
-	else colorInt = WCOLOR;
+	int colorInt = 1;
+	if (pos.color == BLACK) colorInt = -1;
 	S_MOVE bestMove;
 	bestMove.fromSquare = 0ULL;
 	bool bestMoveSet = false;
@@ -43,19 +42,19 @@ S_MOVE search(Position &pos, int depth) {
 	vector<S_MOVE> movesCopy = pos.possibleMoves;
 	for (int i = 0; i < movesCopy.size(); i++) {
 		pos.makeMove(movesCopy[i]);
-		// if (pos.legalPosition()) {
+		if (pos.legalPosition()) {
 			movesCopy[i].evaluation = negamax(pos, depth-1, colorInt);
 			if (!bestMoveSet) {
-				bestMove = movesCopy[i];
+				bestMove = movesCopy.at(i);
 				bestMoveSet = true;
 			}
 			else if ((pos.color == BLACK && movesCopy[i].evaluation > bestMove.evaluation) ||
 				(pos.color == WHITE && movesCopy[i].evaluation < bestMove.evaluation)) {
-				bestMove = movesCopy[i];
+				bestMove = movesCopy.at(i);
 			}
-		// }
-		// cout << "Best move: " << bestMove.evaluation << endl;
-		// cout << "Current move: " << pos.possibleMoves[i].evaluation << endl << endl;	
+		}
+		cout << "Best move: " << bestMove.evaluation << endl;
+		cout << "Current move: " << movesCopy[i].evaluation << endl << endl;	
 		pos.undoMove();
 	}
 	if (!bestMoveSet) cout << "Position is already checkmate!!" << endl;

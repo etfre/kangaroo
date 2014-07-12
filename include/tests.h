@@ -15,6 +15,7 @@ public:
 	// Position pos(S_BOARD b, string c);
 	TestClass();
 	void testDefaultSetup();
+	void testPin1();
 };
 
 #endif

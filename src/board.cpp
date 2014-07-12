@@ -7,13 +7,13 @@
 using namespace std;
 
 string testBoard = "_ _ _ _ _ _ _ K"
+                   "_ N _ k _ _ _ _"
                    "_ _ _ _ _ _ _ _"
                    "_ _ _ _ _ _ _ _"
                    "_ _ _ _ _ _ _ _"
+                   "_ _ _ b _ _ _ _"
                    "_ _ _ _ _ _ _ _"
                    "_ _ _ _ _ _ _ _"
-                   "_ _ _ _ _ _ _ _"
-                   "k _ _ _ _ _ _ _"
                    ;
 
 S_BOARD createBitboards(string stringBoard) {

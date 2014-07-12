@@ -96,8 +96,6 @@ const string NEGATIVE = "negative";
 // players
 const string WHITE = "white";
 const string BLACK = "black";
-const int WCOLOR = 1;
-const int BCOLOR = -1;
 
 // boards
 const U64 FULL = 18446744073709551615ULL;
