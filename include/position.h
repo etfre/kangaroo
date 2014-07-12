@@ -22,7 +22,7 @@ public:
 	void makeMove(S_MOVE &move);
 	void undoMove();
 	void generatePossibleMoves();
-	bool kingEnPrise();
+	bool isCheck();
 	bool isCheckmate();
 	bool legalPosition();
 	void handleCastling();

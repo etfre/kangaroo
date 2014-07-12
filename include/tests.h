@@ -16,6 +16,7 @@ public:
 	TestClass();
 	void testDefaultSetup();
 	void testPin1();
+	void testMateInOne1();
 };
 
 #endif

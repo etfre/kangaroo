@@ -5,16 +5,16 @@ Bitboard based C++ Chess Engine
 
 <h2>To Do:</h2>
 
-*Implement checkmate
+Implement checkmate
 
-*Implement stalemate/3-fold repetition/50 move rule
+Implement stalemate/3-fold repetition/50 move rule
 
-*En Passant
+En Passant
 
-*UCI protocol
+UCI protocol
 
-*Write non-placeholder position evaluation function
+Write non-placeholder position evaluation function
 
-*Testing suite, use a framework?
+Testing suite, use a framework?
 
-*Refactor/improve search function
+Refactor/improve search function

@@ -64,8 +64,8 @@ void Position::generatePossibleMoves() {
 	}
 }
 
-bool Position::kingEnPrise() {
-	// if it's a player's turn and they're attacking the enemy king
+bool Position::isCheck() {
+	// if it's a player's turn and their king is attacked
 	if ((color == WHITE && board.wK & getAttacks(board, BLACK)) ||
 		(color == BLACK && board.bK & getAttacks(board, WHITE))) return true;
 	return false;

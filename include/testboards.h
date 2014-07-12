@@ -26,4 +26,15 @@ const string testPinBoard1 = "_ _ _ _ _ _ _ _"
                              "_ _ _ _ _ _ _ _"
                              ;
 
+const string testMateInOneBoard1 = "K _ _ _ _ _ _ _"
+                                   "_ _ _ _ _ _ _ r"
+                                   "k _ _ _ _ _ _ _"
+                                   "_ _ _ _ _ _ _ _"
+                                   "_ _ _ _ _ _ _ _"
+                                   "_ _ _ _ _ _ _ _"
+                                   "_ _ _ _ _ _ _ _"
+                                   "_ _ _ _ _ _ _ _"
+                                   ;
+
+
 #endif
