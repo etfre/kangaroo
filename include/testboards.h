@@ -76,7 +76,7 @@ const string testStartingCheckmateBlackBoard = "_ _ K _ q _ _ _"
                                                "_ _ _ _ _ _ _ _"
                                                ;
 
-const string testAnyLegalMovesBoard = "K _ _ _ _ _ _ _"
+const string testAnyLegalMovesBoard1 = "K _ _ _ _ _ _ _"
                                       "_ _ _ _ _ _ _ _"
                                       "k _ _ b _ _ _ _"
                                       "_ _ _ _ _ _ _ P"
@@ -85,5 +85,15 @@ const string testAnyLegalMovesBoard = "K _ _ _ _ _ _ _"
                                       "_ _ _ _ _ _ _ _"
                                       "_ _ _ _ _ _ _ _"
                                       ;
+
+const string testAnyLegalMovesBoard2 = "_ _ _ _ _ _ _ _"
+                                       "_ _ _ _ _ _ _ _"
+                                       "_ _ _ _ _ _ _ _"
+                                       "_ _ _ _ _ _ _ _"
+                                       "_ _ _ _ _ _ _ _"
+                                       "_ _ _ _ _ _ _ _"
+                                       "_ _ _ _ _ _ _ _"
+                                       "K _ b _ _ _ _ _"
+                                       ;
 
 #endif

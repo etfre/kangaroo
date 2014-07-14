@@ -6,14 +6,14 @@
 
 using namespace std;
 
-string testBoard = "_ _ _ _ k _ _ K"
-                   "_ _ _ _ _ _ _ P"
-                   "_ _ _ _ _ _ _ r"
+string testBoard = "_ _ _ _ _ _ _ _"
+                   "k _ _ _ _ _ _ _"
                    "_ _ _ _ _ _ _ _"
                    "_ _ _ _ _ _ _ _"
                    "_ _ _ _ _ _ _ _"
                    "_ _ _ _ _ _ _ _"
-                   "_ _ _ _ _ _ _ _"
+                   "_ b _ _ _ _ _ _"
+                   "K _ _ _ _ _ _ _"
                    ;
 
 S_BOARD createBitboards(string stringBoard) {

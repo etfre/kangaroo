@@ -16,6 +16,7 @@ int main() {
 	// extern string testBoard;
 	// S_BOARD b = createBitboards(testBoard);
 	// Position pos(b, BLACK);
+	// printBitboard(getAttacks(pos.board, switchColor(pos.color)));
 	// S_MOVE move = search(pos, 1);
     return 0;
 }

@@ -20,7 +20,10 @@ TestClass::TestClass() {
 	testStartingStalemateBlack();
 	testStartingCheckmateWhite();
 	testStartingCheckmateBlack();
-	testAnyLegalMoves();
+	testAnyLegalMoves1();
+	testAnyLegalMoves2();
+	testNoLegalMoves();
+
 }
 
 void TestClass::testDefaultSetup() {
@@ -48,13 +51,12 @@ void TestClass::testPin1() {
 	assert(move.toSquare == C4);
 }
 
-//Test for mate in one
 void TestClass::testMateInOne1() {
 	S_BOARD b = createBitboards(testMateInOneBoard1);
 	Position pos(b, WHITE);
-	S_MOVE move = search(pos, 1);
-	// assert(move.evaluation == 10000);
-	// assert(move.toSquare == H8);
+	S_MOVE move = search(pos, 2);
+	assert(move.evaluation == 10000);
+	assert(move.toSquare == H8);
 }
 
 void TestClass::testStartingStalemateWhite() {
@@ -89,24 +91,24 @@ void TestClass::testStartingCheckmateBlack() {
 	assert(move.fromSquare == -1);
 }
 
-void TestClass::testAnyLegalMoves() {
-	S_BOARD b = createBitboards(testAnyLegalMovesBoard);
+void TestClass::testAnyLegalMoves1() {
+	S_BOARD b = createBitboards(testAnyLegalMovesBoard1);
 	Position pos(b, WHITE);
 	assert(pos.anyLegalMoves() == true);
 }
 
+void TestClass::testAnyLegalMoves2() {
+	S_BOARD b = createBitboards(testAnyLegalMovesBoard2);
+	Position pos(b, WHITE);
+	S_MOVE move = search(pos, 1);
+	assert(move.evaluation == 3);
+}
+
 void TestClass::testNoLegalMoves() {
-	S_BOARD b = createBitboards(testAnyLegalMovesBoard);
+	S_BOARD b = createBitboards(testAnyLegalMovesBoard1);
 	Position pos(b, BLACK);
 	assert(pos.anyLegalMoves() == false);
 }
-
-// void TestClass::testNoLegalMoves() {
-// 	S_BOARD b = createBitboards(testAnyLegalMovesBoard);
-// 	Position pos(b, BLACK);
-// 	assert(pos.anyLegalMoves() == false);
-// }
-
 
 
 

@@ -11,16 +11,16 @@ using namespace std;
 
 double negamax(Position &pos, int depth, int colorInt) {
 	int bestScore = 10000;
-	// if (!pos.anyLegalMoves()) {
-	// 	cout << "TRACE" << endl;
-	// }
-	if (pos.isStalemate()) {
-		return 0;
+	if (!pos.anyLegalMoves()) {
+		//CHECKMATE!!
+		if (pos.isCheck()) {
+			return bestScore * -colorInt;
+		}
+		//STALEMATE!!
+		else {
+			return 0;
+		}
 	}
-	if (pos.isCheck()) {
-
-	}
-
 	if (depth == 0) {
 		return evaluate(pos);
 	}
@@ -51,7 +51,7 @@ S_MOVE search(Position &pos, int depth) {
 	}
 	vector<S_MOVE> movesCopy = pos.possibleMoves;
 	for (int i = 0; i < movesCopy.size(); i++) {
-		pos.makeMove(movesCopy[i]);
+		pos.makeMove(movesCopy.at(i));
 		if (pos.legalPosition()) {
 			movesCopy[i].evaluation = negamax(pos, depth-1, colorInt);
 			if (!bestMoveSet) {
@@ -71,7 +71,6 @@ S_MOVE search(Position &pos, int depth) {
 		if (pos.isCheck());
 		else {
 			bestMove.evaluation = 0;
-			// cout << "Position is already stalemate!!" << endl;
 		}
 	}
 	return bestMove;

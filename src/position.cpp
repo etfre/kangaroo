@@ -30,6 +30,7 @@ Position::Position(S_BOARD b, string c) {
 void Position::makeMove(S_MOVE &move) {
 	ply++;
 	movePiece(move, board, color);
+	// cout << "after:" << endl;
 	handleCastling();
 	boardHistory.push_back(board);
 	color = switchColor(color);
@@ -68,7 +69,7 @@ void Position::generatePossibleMoves() {
 
 bool Position::isCheck() {
 	// if it's a player's turn and their king is attacked
-	U64 attacks = opponentAttackHistory.at(opponentAttackHistory.size()-1);
+	U64 attacks = getAttacks(board, switchColor(color));
 	if ((color == WHITE && board.wK & attacks) ||
 		(color == BLACK && board.bK & attacks)) return true;
 	return false;
@@ -135,7 +136,6 @@ void Position::handleCastling() {
 	}
 	else {
 		if (bKingCastle == 0 && SQUARES[G8] & board.bK && contains(H8, board.bR)) {
-			cout << ply << endl;
 			clearBit(H8, board.bR, board);
 			setBit(F8, board.bR, board, BLACK);
 			bKingCastle = ply;
@@ -156,8 +156,10 @@ void Position::undoCastling() {
 }
 
 bool Position::anyLegalMoves() {
-	for (int i = 0; i < possibleMoves.size(); i++) {
-		makeMove(possibleMoves.at(i));
+	generatePossibleMoves();
+	vector<S_MOVE> movesCopy = possibleMoves;
+	for (int i = 0; i < movesCopy.size(); i++) {
+		makeMove(movesCopy.at(i));
 		U64 king = board.bK;
 		if (color == BLACK) king = board.wK;
 		U64 attacks = getAttacks(board, color);
