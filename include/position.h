@@ -18,6 +18,7 @@ public:
 	int ply;
 	vector<S_BOARD> boardHistory;
 	vector<S_MOVE> possibleMoves;
+	vector<U64> opponentAttackHistory;
 	Position(S_BOARD b, string c);
 	void makeMove(S_MOVE &move);
 	void undoMove();

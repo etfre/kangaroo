@@ -6,7 +6,7 @@
 
 using namespace std;
 
-string testBoard = "_ _ _ _ _ k _ K"
+string testBoard = "_ _ _ _ k _ _ K"
                    "_ _ _ _ _ _ _ P"
                    "_ _ _ _ _ _ _ r"
                    "_ _ _ _ _ _ _ _"

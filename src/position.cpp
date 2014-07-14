@@ -23,8 +23,8 @@ Position::Position(S_BOARD b, string c) {
 	bKingCastle = 0;
 	bQueenCastle = 0;
 	boardHistory.push_back(board);
-	vector<S_MOVE> possibleMoves;
 	generatePossibleMoves();
+	opponentAttackHistory.push_back(getAttacks(board, switchColor(color)));
 }
 
 void Position::makeMove(S_MOVE &move) {
@@ -33,6 +33,7 @@ void Position::makeMove(S_MOVE &move) {
 	handleCastling();
 	boardHistory.push_back(board);
 	color = switchColor(color);
+	opponentAttackHistory.push_back(getAttacks(board, color));
 }
 
 void Position::undoMove() {
@@ -41,6 +42,7 @@ void Position::undoMove() {
 	board = boardHistory.at(boardHistory.size()-1);
 	undoCastling();
 	color = switchColor(color);
+	opponentAttackHistory.pop_back();
 }
 
 void Position::generatePossibleMoves() {
@@ -66,15 +68,14 @@ void Position::generatePossibleMoves() {
 
 bool Position::isCheck() {
 	// if it's a player's turn and their king is attacked
-	if ((color == WHITE && board.wK & getAttacks(board, BLACK)) ||
-		(color == BLACK && board.bK & getAttacks(board, WHITE))) return true;
+	U64 attacks = opponentAttackHistory.at(opponentAttackHistory.size()-1);
+	// printBitboard(attacks);
+	if ((color == WHITE && board.wK & attacks) ||
+		(color == BLACK && board.bK & attacks)) return true;
 	return false;
 }
 
 bool Position::isCheckmate() {
-	// if ((color == WHITE && board.wK & getAttacks(board, BLACK)) ||
-	// 	(color == BLACK && board.bK & getAttacks(board, WHITE))) return true;
-	// return false;
 	U64 king;
 	if (color == WHITE) king = board.bK;
 	else king = board.wK;
@@ -83,7 +84,9 @@ bool Position::isCheckmate() {
 
 bool Position::isStalemate() {
 	if (isCheck()) return false;
-	return false;
+	for (int i = 0; i < possibleMoves.size(); i++) {
+		// cout << possibleMoves[i].fromSquare << endl;
+	}
 }
 
 bool Position::legalPosition() {
@@ -94,7 +97,7 @@ bool Position::legalPosition() {
 	U64 king;
 	if (color == WHITE) king = board.bK;
 	else king = board.wK;
-	U64 attacks = getAttacks(board, color);
+	U64 attacks = opponentAttackHistory.at(opponentAttackHistory.size()-1);
 	if (attacks & king) return false;
 	// if (ply > 0) {
 	// 	if (wKingCastle == ply && ((SQUARES[E1] | SQUARES[F1]) & attacks)) return false;

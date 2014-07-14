@@ -36,5 +36,44 @@ const string testMateInOneBoard1 = "K _ _ _ _ _ _ _"
                                    "_ _ _ _ _ _ _ _"
                                    ;
 
+const string testStartingStalemateWhiteBoard = "k _ K _ _ _ _ _"
+                                               "_ _ _ _ _ _ _ R"
+                                               "_ _ _ _ _ _ _ _"
+                                               "_ _ _ _ _ _ _ _"
+                                               "_ _ _ _ _ _ _ _"
+                                               "_ _ _ _ _ _ _ _"
+                                               "_ _ _ _ _ _ _ _"
+                                               "_ _ _ _ _ _ _ _"
+                                               ;
+
+const string testStartingStalemateBlackBoard = "K _ k _ _ _ _ _"
+                                               "_ _ _ _ _ _ _ r"
+                                               "_ _ _ _ _ _ _ _"
+                                               "_ _ _ _ _ _ _ _"
+                                               "_ _ _ _ _ _ _ _"
+                                               "_ _ _ _ _ _ _ _"
+                                               "_ _ _ _ _ _ _ _"
+                                               "_ _ _ _ _ _ _ _"
+                                               ;
+
+const string testStartingCheckmateWhiteBoard = "R _ k _ _ _ _ _"
+                                               "_ _ _ _ _ _ _ _"
+                                               "_ _ K _ _ _ _ _"
+                                               "_ _ _ _ _ _ _ _"
+                                               "_ _ _ _ _ _ _ _"
+                                               "_ _ _ _ _ _ _ _"
+                                               "_ _ _ _ _ _ _ _"
+                                               "_ _ _ _ _ _ _ _"
+                                               ;
+
+const string testStartingCheckmateBlackBoard = "_ _ K _ q _ _ _"
+                                               "_ _ _ _ _ _ _ _"
+                                               "_ _ k _ _ _ _ _"
+                                               "_ _ _ _ _ _ _ _"
+                                               "_ _ _ _ _ _ _ _"
+                                               "_ _ _ _ _ _ _ _"
+                                               "_ _ _ _ _ _ _ _"
+                                               "_ _ _ _ _ _ _ _"
+                                               ;
 
 #endif

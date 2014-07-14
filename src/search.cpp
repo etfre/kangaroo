@@ -39,10 +39,11 @@ double negamax(Position &pos, int depth, int colorInt) {
 
 S_MOVE search(Position &pos, int depth) {
 	assert(depth >= 1);
-	int colorInt = 1;
-	if (pos.color == BLACK) colorInt = -1;
+	int colorInt = -1;
+	if (pos.color == BLACK) colorInt = 1;
 	S_MOVE bestMove;
-	bestMove.fromSquare = 0ULL;
+	bestMove.fromSquare = -1;
+	bestMove.evaluation = 10000 * colorInt;
 	bool bestMoveSet = false;
 	if (!pos.legalPosition()) {
 		cout << "Illegal start Position!!" << endl;
@@ -68,7 +69,10 @@ S_MOVE search(Position &pos, int depth) {
 	}
 	if (!bestMoveSet) {
 		if (pos.isCheck()) cout << "Position is already checkmate!!" << endl;
-		else cout << "Position is already stalemate!!" << endl;
+		else {
+			bestMove.evaluation = 0;
+			cout << "Position is already stalemate!!" << endl;
+		}
 	}
 	return bestMove;
 }

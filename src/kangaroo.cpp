@@ -17,7 +17,6 @@ int main() {
 	// S_BOARD b = createBitboards(testBoard);
 	// Position pos(b, BLACK);
 	// S_MOVE move = search(pos, 1);
-	// cout << move.fromSquare << " " << move.toSquare << endl;
     return 0;
 }
 

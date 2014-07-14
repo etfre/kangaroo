@@ -11,12 +11,14 @@ using namespace std;
 class TestClass
 {
 public:
-	// S_BOARD board;
-	// Position pos(S_BOARD b, string c);
 	TestClass();
 	void testDefaultSetup();
 	void testPin1();
 	void testMateInOne1();
+	void testStartingStalemateWhite();
+	void testStartingStalemateBlack();
+	void testStartingCheckmateWhite();
+	void testStartingCheckmateBlack();
 };
 
 #endif

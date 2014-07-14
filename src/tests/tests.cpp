@@ -16,6 +16,10 @@ TestClass::TestClass() {
 	testDefaultSetup();
 	testPin1();
 	testMateInOne1();
+	testStartingStalemateWhite();
+	testStartingStalemateBlack();
+	testStartingCheckmateWhite();
+	testStartingCheckmateBlack();
 }
 
 void TestClass::testDefaultSetup() {
@@ -50,4 +54,37 @@ void TestClass::testMateInOne1() {
 	S_MOVE move = search(pos, 1);
 	// assert(move.evaluation == 10000);
 	// assert(move.toSquare == H8);
+}
+
+void TestClass::testStartingStalemateWhite() {
+	S_BOARD b = createBitboards(testStartingStalemateWhiteBoard);
+	Position pos(b, WHITE);
+	S_MOVE move = search(pos, 1);
+	assert(move.evaluation == 0);
+	assert(move.fromSquare == -1);
+}
+
+void TestClass::testStartingStalemateBlack() {
+	S_BOARD b = createBitboards(testStartingStalemateBlackBoard);
+	Position pos(b, BLACK);
+	S_MOVE move = search(pos, 1);
+	assert(move.evaluation == 0);
+	assert(move.fromSquare == -1);
+}
+
+void TestClass::testStartingCheckmateWhite() {
+	S_BOARD b = createBitboards(testStartingCheckmateWhiteBoard);
+	Position pos(b, WHITE);
+	S_MOVE move = search(pos, 1);
+	cout << move.evaluation << endl;
+	assert(move.evaluation == -10000);
+	assert(move.fromSquare == -1);
+}
+
+void TestClass::testStartingCheckmateBlack() {
+	S_BOARD b = createBitboards(testStartingCheckmateBlackBoard);
+	Position pos(b, BLACK);
+	S_MOVE move = search(pos, 1);
+	assert(move.evaluation == 10000);
+	assert(move.fromSquare == -1);
 }
