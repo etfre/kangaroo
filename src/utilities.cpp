@@ -2,6 +2,7 @@
 #include <string>
 #include <assert.h>
 #include "../include/defs.h"
+#include "../include/position.h"
 
 using namespace std;
 

@@ -19,6 +19,8 @@ public:
 	void testStartingStalemateBlack();
 	void testStartingCheckmateWhite();
 	void testStartingCheckmateBlack();
+	void testAnyLegalMoves();
+	void testNoLegalMoves();
 };
 
 #endif

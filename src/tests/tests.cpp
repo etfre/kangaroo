@@ -20,6 +20,7 @@ TestClass::TestClass() {
 	testStartingStalemateBlack();
 	testStartingCheckmateWhite();
 	testStartingCheckmateBlack();
+	testAnyLegalMoves();
 }
 
 void TestClass::testDefaultSetup() {
@@ -76,7 +77,6 @@ void TestClass::testStartingCheckmateWhite() {
 	S_BOARD b = createBitboards(testStartingCheckmateWhiteBoard);
 	Position pos(b, WHITE);
 	S_MOVE move = search(pos, 1);
-	cout << move.evaluation << endl;
 	assert(move.evaluation == -10000);
 	assert(move.fromSquare == -1);
 }
@@ -88,3 +88,27 @@ void TestClass::testStartingCheckmateBlack() {
 	assert(move.evaluation == 10000);
 	assert(move.fromSquare == -1);
 }
+
+void TestClass::testAnyLegalMoves() {
+	S_BOARD b = createBitboards(testAnyLegalMovesBoard);
+	Position pos(b, WHITE);
+	assert(pos.anyLegalMoves() == true);
+}
+
+void TestClass::testNoLegalMoves() {
+	S_BOARD b = createBitboards(testAnyLegalMovesBoard);
+	Position pos(b, BLACK);
+	assert(pos.anyLegalMoves() == false);
+}
+
+// void TestClass::testNoLegalMoves() {
+// 	S_BOARD b = createBitboards(testAnyLegalMovesBoard);
+// 	Position pos(b, BLACK);
+// 	assert(pos.anyLegalMoves() == false);
+// }
+
+
+
+
+
+

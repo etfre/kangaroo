@@ -24,12 +24,14 @@ public:
 	void undoMove();
 	void generatePossibleMoves();
 	bool isCheck();
+	bool kingEnPrise();
 	bool isCheckmate();
 	bool isStalemate();
 	bool legalPosition();
 	void handleCastling();
     void undoCastling();
     double evaluate();
+    bool anyLegalMoves();
 };
 
 #endif

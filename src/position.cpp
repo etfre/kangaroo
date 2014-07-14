@@ -69,9 +69,16 @@ void Position::generatePossibleMoves() {
 bool Position::isCheck() {
 	// if it's a player's turn and their king is attacked
 	U64 attacks = opponentAttackHistory.at(opponentAttackHistory.size()-1);
-	// printBitboard(attacks);
 	if ((color == WHITE && board.wK & attacks) ||
 		(color == BLACK && board.bK & attacks)) return true;
+	return false;
+}
+
+bool Position::kingEnPrise() {
+	// if it's a player's turn and they're already attacking the opponent's king
+	U64 attacks = opponentAttackHistory.at(opponentAttackHistory.size()-1);
+	if ((color == BLACK && board.wK & attacks) ||
+		(color == WHITE && board.bK & attacks)) return true;
 	return false;
 }
 
@@ -146,4 +153,18 @@ void Position::undoCastling() {
 	else if (ply == wQueenCastle) wQueenCastle = 0;
 	else if (ply == bKingCastle) bKingCastle = 0;
 	else if (ply == bQueenCastle) bQueenCastle = 0;
+}
+
+bool Position::anyLegalMoves() {
+	for (int i = 0; i < possibleMoves.size(); i++) {
+		makeMove(possibleMoves.at(i));
+		U64 king = board.bK;
+		if (color == BLACK) king = board.wK;
+		U64 attacks = getAttacks(board, color);
+		undoMove();
+		if ((king & attacks) == 0) {
+			return true;
+		}
+	}
+	return false;
 }
