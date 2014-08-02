@@ -13,16 +13,18 @@
 using namespace std;
 
 TestClass::TestClass() {
-	testDefaultSetup();
-	testPin1();
-	testMateInOne1();
-	testStartingStalemateWhite();
-	testStartingStalemateBlack();
-	testStartingCheckmateWhite();
-	testStartingCheckmateBlack();
-	testAnyLegalMoves1();
-	testAnyLegalMoves2();
-	testNoLegalMoves();
+	// testDefaultSetup();
+	// testPin1();
+	// testMateInOne1();
+	// testStartingStalemateWhite();
+	// testStartingStalemateBlack();
+	// testStartingCheckmateWhite();
+	// testStartingCheckmateBlack();
+	// testAnyLegalMoves1();
+	// testAnyLegalMoves2();
+	// testNoLegalMoves();
+	testMateInTwo1();
+	testForcedStalemate1();
 
 }
 
@@ -108,6 +110,22 @@ void TestClass::testNoLegalMoves() {
 	S_BOARD b = createBitboards(testAnyLegalMovesBoard1);
 	Position pos(b, BLACK);
 	assert(pos.anyLegalMoves() == false);
+}
+
+void TestClass::testMateInTwo1() {
+	S_BOARD b = createBitboards(testMateInTwoBoard1);
+	Position pos(b, WHITE);
+	S_MOVE move = search(pos, 3);
+	cout << move.fromSquare << " " << move.toSquare << endl;
+	cout <<move.evaluation << endl;
+}
+
+void TestClass::testForcedStalemate1() {
+	S_BOARD b = createBitboards(testForcedStalemateBoard1);
+	Position pos(b, BLACK);
+	S_MOVE move = search(pos, 4);
+	cout << move.fromSquare << " " << move.toSquare << endl;
+	cout <<move.evaluation << endl;
 }
 
 

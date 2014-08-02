@@ -10,14 +10,15 @@
 using namespace std;
 
 double negamax(Position &pos, int depth, int colorInt) {
-	int bestScore = 10000;
+	int bestScore = 0;
+	bool bestMoveSet = false;
 	if (!pos.anyLegalMoves()) {
-		//CHECKMATE!!
 		if (pos.isCheck()) {
-			return bestScore * -colorInt;
+			//CHECKMATE!!
+			return 9999 * -colorInt;
 		}
-		//STALEMATE!!
 		else {
+			//STALEMATE!!
 			return 0;
 		}
 	}
@@ -27,11 +28,14 @@ double negamax(Position &pos, int depth, int colorInt) {
 	pos.generatePossibleMoves();
 	vector<S_MOVE> movesCopy = pos.possibleMoves;
 	for (int i = 0; i < movesCopy.size(); i++) {
-		pos.makeMove(movesCopy[i]);
-		if (pos.legalPosition()) {
+		pos.makeMove(movesCopy.at(i));
+		if (!pos.kingEnPrise()) {
 			double score = negamax(pos, depth-1, -colorInt);
-			if (bestScore == 10000 || pos.color == WHITE && score < bestScore ||
-				pos.color == BLACK && score > bestScore) bestScore = score;
+			if (!bestMoveSet || pos.color == WHITE && score < bestScore ||
+				pos.color == BLACK && score > bestScore) {
+				bestMoveSet = true;
+				bestScore = score;
+			}
 		}
 		pos.undoMove();
 	}
@@ -44,22 +48,22 @@ S_MOVE search(Position &pos, int depth) {
 	if (pos.color == BLACK) colorInt = 1;
 	S_MOVE bestMove;
 	bestMove.fromSquare = -1;
-	bestMove.evaluation = 10000 * colorInt;
+	bestMove.evaluation = 9999 * colorInt;
 	bool bestMoveSet = false;
-	if (!pos.legalPosition()) {
+	if (pos.kingEnPrise()) {
 		return bestMove;
 	}
 	vector<S_MOVE> movesCopy = pos.possibleMoves;
 	for (int i = 0; i < movesCopy.size(); i++) {
 		pos.makeMove(movesCopy.at(i));
-		if (pos.legalPosition()) {
+		if (!pos.kingEnPrise()) {
 			movesCopy[i].evaluation = negamax(pos, depth-1, colorInt);
 			if (!bestMoveSet) {
 				bestMove = movesCopy.at(i);
 				bestMoveSet = true;
 			}
-			else if ((pos.color == BLACK && movesCopy[i].evaluation > bestMove.evaluation) ||
-				(pos.color == WHITE && movesCopy[i].evaluation < bestMove.evaluation)) {
+			else if ((pos.color == BLACK && movesCopy.at(i).evaluation > bestMove.evaluation) ||
+				(pos.color == WHITE && movesCopy.at(i).evaluation < bestMove.evaluation)) {
 				bestMove = movesCopy.at(i);
 			}
 		}

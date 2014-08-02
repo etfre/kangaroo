@@ -22,6 +22,8 @@ public:
 	void testAnyLegalMoves1();
 	void testNoLegalMoves();
 	void testAnyLegalMoves2();
+	void testMateInTwo1();
+	void testForcedStalemate1();
 };
 
 #endif

@@ -76,14 +76,16 @@ bool Position::isCheck() {
 }
 
 bool Position::kingEnPrise() {
-	// if it's a player's turn and they're already attacking the opponent's king
-	U64 attacks = opponentAttackHistory.at(opponentAttackHistory.size()-1);
+	// if it's a player's turn and they're currently attacking the opponent's
+	// king. This is always an illegal position.
+	U64 attacks = getAttacks(board, color);
 	if ((color == BLACK && board.wK & attacks) ||
 		(color == WHITE && board.bK & attacks)) return true;
 	return false;
 }
 
 bool Position::isCheckmate() {
+	assert (0);
 	U64 king;
 	if (color == WHITE) king = board.bK;
 	else king = board.wK;
@@ -103,8 +105,8 @@ bool Position::legalPosition() {
 	who moves next, ie if white has just moved, color will be black.
 	*/
 	U64 king;
-	if (color == WHITE) king = board.bK;
-	else king = board.wK;
+	if (color == WHITE) king = board.wK;
+	else king = board.bK;
 	U64 attacks = opponentAttackHistory.at(opponentAttackHistory.size()-1);
 	if (attacks & king) return false;
 	// if (ply > 0) {

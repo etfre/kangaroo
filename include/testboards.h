@@ -77,14 +77,14 @@ const string testStartingCheckmateBlackBoard = "_ _ K _ q _ _ _"
                                                ;
 
 const string testAnyLegalMovesBoard1 = "K _ _ _ _ _ _ _"
-                                      "_ _ _ _ _ _ _ _"
-                                      "k _ _ b _ _ _ _"
-                                      "_ _ _ _ _ _ _ P"
-                                      "_ _ _ _ _ _ _ p"
-                                      "_ _ _ _ _ _ _ _"
-                                      "_ _ _ _ _ _ _ _"
-                                      "_ _ _ _ _ _ _ _"
-                                      ;
+                                       "_ _ _ _ _ _ _ _"
+                                       "k _ _ b _ _ _ _"
+                                       "_ _ _ _ _ _ _ P"
+                                       "_ _ _ _ _ _ _ p"
+                                       "_ _ _ _ _ _ _ _"
+                                       "_ _ _ _ _ _ _ _"
+                                       "_ _ _ _ _ _ _ _"
+                                       ;
 
 const string testAnyLegalMovesBoard2 = "_ _ _ _ _ _ _ _"
                                        "_ _ _ _ _ _ _ _"
@@ -95,5 +95,27 @@ const string testAnyLegalMovesBoard2 = "_ _ _ _ _ _ _ _"
                                        "_ _ _ _ _ _ _ _"
                                        "K _ b _ _ _ _ _"
                                        ;
+
+
+const string testMateInTwoBoard1 = "_ _ _ _ _ _ _ _"
+                                   "_ K _ _ _ _ _ _"
+                                   "_ _ _ _ _ _ _ r"
+                                   "_ _ _ _ _ _ r _"
+                                   "_ _ _ _ _ _ _ _"
+                                   "_ _ _ _ _ _ _ _"
+                                   "_ _ _ _ _ _ _ _"
+                                   "k _ _ _ _ _ _ _"
+                                   ;
+
+const string testForcedStalemateBoard1 = "_ K _ _ _ _ _ _"
+                                         "_ _ R _ _ _ _ _"
+                                         "q k _ _ _ _ _ _"
+                                         "_ _ _ _ _ _ _ _"
+                                         "_ _ _ _ _ _ _ _"
+                                         "_ _ _ _ _ _ _ _"
+                                         "_ _ _ _ _ _ _ _"
+                                         "_ _ _ _ _ _ _ _"
+                                         ;
+
 
 #endif
