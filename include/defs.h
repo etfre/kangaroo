@@ -43,6 +43,7 @@ typedef struct {
     int fromSquare;
     int toSquare;
     double evaluation;
+    string promoteTo;
     U64 *pieces;
 } S_MOVE;
 
@@ -58,6 +59,7 @@ void printBoard(S_BOARD board);
 
 // movegen
 void generatePieceMoves(vector<S_MOVE> &possibleMoves, S_BOARD board, U64 &pieces, string color, U64 (*genFunc)(int, S_BOARD&, string, bool));
+void addPromotionMoves(vector<S_MOVE> &possibleMoves, S_MOVE move);
 U64 generateRookMoves(int bitpos, S_BOARD &board, string color, bool includeAttacks);
 U64 generateKnightMoves(int bitpos, S_BOARD &board, string color, bool includeAttacks);
 U64 generateBishopMoves(int square, S_BOARD &board, string color, bool includeAttacks);

@@ -7,7 +7,7 @@
 #include "../include/position.h"
 #include "../include/checks.h"
 #include "../include/search.h"
-#include "../include/tests.h"
+#include "../include/tests/tests.h"
 
 using namespace std;
 

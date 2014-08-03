@@ -6,26 +6,29 @@
 #include "../../include/checks.h"
 #include "../../include/tables.h"
 #include "../../include/position.h"
-#include "../../include/tests.h"
-#include "../../include/testboards.h"
+#include "../../include/tests/tests.h"
+#include "../../include/tests/testboards.h"
+#include "../../include/tests/test_bitboards.h"
 #include "../../include/search.h"
 
 using namespace std;
 
 TestClass::TestClass() {
-	// testDefaultSetup();
-	// testPin1();
-	// testMateInOne1();
-	// testStartingStalemateWhite();
-	// testStartingStalemateBlack();
-	// testStartingCheckmateWhite();
-	// testStartingCheckmateBlack();
-	// testAnyLegalMoves1();
-	// testAnyLegalMoves2();
-	// testNoLegalMoves();
+	testDefaultSetup();
+	testPin1();
+	testMateInOne1();
+	testStartingStalemateWhite();
+	testStartingStalemateBlack();
+	testStartingCheckmateWhite();
+	testStartingCheckmateBlack();
+	testAnyLegalMoves1();
+	testAnyLegalMoves2();
+	testNoLegalMoves();
 	testMateInTwo1();
+	testMateInTwo2();
 	testForcedStalemate1();
-
+	testPromotion1();
+	TestBitboards t;
 }
 
 void TestClass::testDefaultSetup() {
@@ -57,7 +60,7 @@ void TestClass::testMateInOne1() {
 	S_BOARD b = createBitboards(testMateInOneBoard1);
 	Position pos(b, WHITE);
 	S_MOVE move = search(pos, 2);
-	assert(move.evaluation == 10000);
+	assert(move.evaluation == 9999);
 	assert(move.toSquare == H8);
 }
 
@@ -81,7 +84,7 @@ void TestClass::testStartingCheckmateWhite() {
 	S_BOARD b = createBitboards(testStartingCheckmateWhiteBoard);
 	Position pos(b, WHITE);
 	S_MOVE move = search(pos, 1);
-	assert(move.evaluation == -10000);
+	assert(move.evaluation == -9999);
 	assert(move.fromSquare == -1);
 }
 
@@ -89,7 +92,7 @@ void TestClass::testStartingCheckmateBlack() {
 	S_BOARD b = createBitboards(testStartingCheckmateBlackBoard);
 	Position pos(b, BLACK);
 	S_MOVE move = search(pos, 1);
-	assert(move.evaluation == 10000);
+	assert(move.evaluation == 9999);
 	assert(move.fromSquare == -1);
 }
 
@@ -116,18 +119,34 @@ void TestClass::testMateInTwo1() {
 	S_BOARD b = createBitboards(testMateInTwoBoard1);
 	Position pos(b, WHITE);
 	S_MOVE move = search(pos, 3);
-	cout << move.fromSquare << " " << move.toSquare << endl;
-	cout <<move.evaluation << endl;
+	assert(move.fromSquare == 38);
+	assert(move.toSquare == 54);
+	assert(move.evaluation == 9999);
+}
+
+void TestClass::testMateInTwo2() {
+	S_BOARD b = createBitboards(testMateInTwoBoard2);
+	Position pos(b, WHITE);
+	S_MOVE move = search(pos, 3);
+	assert(move.fromSquare == 15);
+	assert(move.toSquare == 47);
+	assert(move.evaluation == 9999);
 }
 
 void TestClass::testForcedStalemate1() {
 	S_BOARD b = createBitboards(testForcedStalemateBoard1);
 	Position pos(b, BLACK);
 	S_MOVE move = search(pos, 4);
-	cout << move.fromSquare << " " << move.toSquare << endl;
-	cout <<move.evaluation << endl;
+	assert(move.fromSquare == 50);
+	assert(move.toSquare == 42);
+	assert(move.evaluation == 0);
 }
 
+void TestClass::testPromotion1() {
+	S_BOARD b = createBitboards(testPromotionBoard1);
+	Position pos(b, WHITE);
+	// S_MOVE move = search(pos, 1);
+}
 
 
 

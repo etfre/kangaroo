@@ -24,14 +24,14 @@ Position::Position(S_BOARD b, string c) {
 	bQueenCastle = 0;
 	boardHistory.push_back(board);
 	generatePossibleMoves();
-	opponentAttackHistory.push_back(getAttacks(board, switchColor(color)));
+	// opponentAttackHistory.push_back(getAttacks(board, switchColor(color)));
 }
 
 void Position::makeMove(S_MOVE &move) {
 	ply++;
 	movePiece(move, board, color);
-	// cout << "after:" << endl;
 	handleCastling();
+	if (move.promoteTo.size() > 0) handlePromotion(move);
 	boardHistory.push_back(board);
 	color = switchColor(color);
 	opponentAttackHistory.push_back(getAttacks(board, color));
@@ -65,6 +65,9 @@ void Position::generatePossibleMoves() {
 		generatePieceMoves(possibleMoves, board, board.bK, BLACK, generateKingMoves);
 		generatePieceMoves(possibleMoves, board, board.bP, BLACK, generatePawnMoves);
 	}
+	// for (int i = 0; i < possibleMoves.size(); i++) {
+	// 	cout << possibleMoves.at(i).fromSquare << " " << possibleMoves.at(i).toSquare << " " << possibleMoves.at(i).promoteTo << endl;
+	// }
 }
 
 bool Position::isCheck() {
@@ -95,7 +98,6 @@ bool Position::isCheckmate() {
 bool Position::isStalemate() {
 	if (isCheck()) return false;
 	for (int i = 0; i < possibleMoves.size(); i++) {
-		// cout << possibleMoves[i].fromSquare << endl;
 	}
 }
 
@@ -171,4 +173,20 @@ bool Position::anyLegalMoves() {
 		}
 	}
 	return false;
+}
+
+void Position::handlePromotion(S_MOVE move) {
+	clearPiece(move.toSquare, board, color);
+	if (move.toSquare > 55) {
+		if (move.promoteTo == "knight") setBit(move.toSquare, board.wN, board, color);
+		else if (move.promoteTo == "bishop") setBit(move.toSquare, board.wB, board, color);
+		else if (move.promoteTo == "rook") setBit(move.toSquare, board.wR, board, color);
+		else if (move.promoteTo == "queen") setBit(move.toSquare, board.wQ, board, color);
+	}
+	else if (move.toSquare < 8) {
+		if (move.promoteTo == "knight") setBit(move.toSquare, board.bN, board, color);
+		else if (move.promoteTo == "bishop") setBit(move.toSquare, board.bB, board, color);
+		else if (move.promoteTo == "rook") setBit(move.toSquare, board.bR, board, color);
+		else if (move.promoteTo == "queen") setBit(move.toSquare, board.bQ, board, color);
+	}
 }

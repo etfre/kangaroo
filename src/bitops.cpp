@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
-#include "../include/defs.h"
 #include <assert.h>
+#include "../include/defs.h"
 
 using namespace std;
 

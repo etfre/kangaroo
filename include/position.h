@@ -32,6 +32,7 @@ public:
     void undoCastling();
     double evaluate();
     bool anyLegalMoves();
+    void handlePromotion(S_MOVE);
 };
 
 #endif

@@ -17,10 +17,24 @@ void generatePieceMoves(vector<S_MOVE> &possibleMoves, S_BOARD board, U64 &piece
 			S_MOVE move;
 			move.pieces = &pieces;
 			move.fromSquare = square;
-			move.toSquare = toSquares[i];
-			possibleMoves.push_back(move);
+			move.toSquare = toSquares.at(i);
+			move.promoteTo = "";
+			if ((color == WHITE && move.toSquare > 55 && contains(move.fromSquare, board.wP)) ||
+				(color == BLACK && move.toSquare < 8 && contains(move.fromSquare, board.bP))) {
+				addPromotionMoves(possibleMoves, move);
+			}
+			else possibleMoves.push_back(move);
 		}
 		clearBit(square, piecesCopy);
+	}
+}
+
+void addPromotionMoves(vector<S_MOVE> &possibleMoves, S_MOVE move) {
+	vector<string> promotionPieces = {"knight", "bishop", "rook", "queen"};
+	for (int i = 0; i < 4; i++) {
+		S_MOVE newMove = move;
+		newMove.promoteTo = promotionPieces.at(i);
+		possibleMoves.push_back(newMove);
 	}
 }
 

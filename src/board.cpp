@@ -25,7 +25,7 @@ S_BOARD createBitboards(string stringBoard) {
 	assert (spBoard.size() == 64);
 	int flip;
 	for (int i = 0; i < 64; i++) {
-		flip = 7-2*(i%8);
+		flip = 7 - 2*(i%8);
 		if (spBoard[63-i] == 'r') setBit(i+flip, board.wR);
 		else if (spBoard[63-i] == 'n') setBit(i+flip, board.wN);
 		else if (spBoard[63-i] == 'b') setBit(i+flip, board.wB);

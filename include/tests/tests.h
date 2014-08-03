@@ -3,8 +3,9 @@
 #include <vector>
 #include <string>
 
-#include "../include/defs.h"
-#include "../include/position.h"
+#include "../defs.h"
+#include "../position.h"
+#include "test_bitboards.h"
 
 using namespace std;
 
@@ -23,7 +24,9 @@ public:
 	void testNoLegalMoves();
 	void testAnyLegalMoves2();
 	void testMateInTwo1();
+	void testMateInTwo2();
 	void testForcedStalemate1();
+	void testPromotion1();
 };
 
 #endif

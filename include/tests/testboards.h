@@ -2,7 +2,7 @@
 #define TESTBOARDS_H
 
 #include <string>
-#include "../include/defs.h"
+#include "../defs.h"
 
 using namespace std;
 
@@ -107,6 +107,16 @@ const string testMateInTwoBoard1 = "_ _ _ _ _ _ _ _"
                                    "k _ _ _ _ _ _ _"
                                    ;
 
+const string testMateInTwoBoard2 = "_ _ _ _ _ k B K"
+                                   "_ _ _ _ _ _ P P"
+                                   "_ _ _ _ _ _ p _"
+                                   "_ _ _ _ _ _ _ _"
+                                   "_ _ _ _ _ _ _ _"
+                                   "_ _ _ _ _ _ _ _"
+                                   "_ _ _ _ _ _ _ r"
+                                   "_ _ _ _ _ _ _ _"
+                                   ;
+
 const string testForcedStalemateBoard1 = "_ K _ _ _ _ _ _"
                                          "_ _ R _ _ _ _ _"
                                          "q k _ _ _ _ _ _"
@@ -117,5 +127,14 @@ const string testForcedStalemateBoard1 = "_ K _ _ _ _ _ _"
                                          "_ _ _ _ _ _ _ _"
                                          ;
 
+const string testPromotionBoard1 = "_ _ _ _ _ _ _ _"
+                                   "_ _ _ _ _ _ p _"
+                                   "_ _ _ _ _ _ k _"
+                                   "_ _ _ _ _ _ _ _"
+                                   "_ _ _ _ _ _ _ _"
+                                   "_ _ _ _ _ _ _ _"
+                                   "_ _ K _ _ _ _ _"
+                                   "_ _ _ _ _ _ _ _"
+                                   ;
 
 #endif
